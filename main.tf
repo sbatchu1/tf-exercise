@@ -1,13 +1,15 @@
 
+
 variable "sai_msg"{
-    value = "-this is sai's message"
+    default = "default msg"
 }
+
 module "mukesh-ref" {
-    source = "https://github.com/mukesh4338/mukesh-tfrepo/tf-module-test"
-
-    sai_msg = "${format("%s, this is my message", module.tf-module-test.result_mukesh)}"
+    source = "github.com/mukesh4338/mukesh-tfrepo"
 }
 
-output "sai-msg"{
-    value = "${var.sai_msg}"
+
+
+output "sai_msg"{
+    value = "${format("%s!, -this is sai's message", module.mukesh-ref.result_mukesh)}"
 }
